@@ -48,6 +48,7 @@ class CalculatorVC: UIViewController {
     }
 
     override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         textFieldHeightConstraint.constant = view.frame.height/3
     }
 
