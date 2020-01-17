@@ -73,6 +73,9 @@ class CalculatorVC: UIViewController {
 
     @objc private func numberButtonPressed(sender: UIButton) {
         if textField.text == "0" || textField.text == "+" || textField.text == "-" || textField.text == "/" || textField.text == "X" || currentOperation == .equals {
+            if currentOperation == .equals {
+                clear()
+            }
             textField.text = String(sender.tag)
         } else {
             textField.text = (textField?.text ?? "") + String(sender.tag)
