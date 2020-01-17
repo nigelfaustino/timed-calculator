@@ -35,7 +35,7 @@ class CalculatorVC: UIViewController {
     @IBOutlet weak var minusButton: UIButton!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var equalButton: UIButton!
-
+    @IBOutlet weak var textFieldHeightConstraint: NSLayoutConstraint!
     private var numberButtonArray = [UIButton]()
     private var runningTotal = 0.0
     private var currentNumber = 0.0
@@ -45,6 +45,10 @@ class CalculatorVC: UIViewController {
         super.viewDidLoad()
         modifyTextField()
         addTargetsToButtons()
+    }
+
+    override func viewWillLayoutSubviews() {
+        textFieldHeightConstraint.constant = view.frame.height/3
     }
 
     func modifyTextField() {
