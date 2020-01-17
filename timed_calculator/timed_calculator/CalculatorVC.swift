@@ -51,13 +51,13 @@ class CalculatorVC: UIViewController {
         textFieldHeightConstraint.constant = view.frame.height/3
     }
 
-    func modifyTextField() {
+    private func modifyTextField() {
         textField.isUserInteractionEnabled = false
         textField.textAlignment = .right
         textField.text = "0"
     }
 
-    func addTargetsToButtons() {
+    private func addTargetsToButtons() {
         numberButtonArray = [zeroButton, oneButton,  twoButton, threeButton, fourButton, fiveButton, sixButton, sevenButton, eightButton, nineButton]
         for i in 0 ..< numberButtonArray.count {
             numberButtonArray[i].tag = i
@@ -71,7 +71,7 @@ class CalculatorVC: UIViewController {
         equalButton.addTarget(self, action: #selector(equalButtonPressed), for: .touchUpInside)
     }
 
-    @objc func numberButtonPressed(sender: UIButton) {
+    @objc private func numberButtonPressed(sender: UIButton) {
         if textField.text == "0" || textField.text == "+" || textField.text == "-" || textField.text == "/" || textField.text == "X" || currentOperation == .equals {
             textField.text = String(sender.tag)
         } else {
@@ -82,35 +82,31 @@ class CalculatorVC: UIViewController {
         }
     }
 
-    @objc func addButtonPressed() {
+    @objc private func addButtonPressed() {
         executeOperation()
         currentOperation = .add
         textField.text = "+"
-        currentNumber = 0.0
     }
 
-    @objc func minusButtonPressed() {
+    @objc private func minusButtonPressed() {
         executeOperation()
         currentOperation = .subtract
         textField.text = "-"
-        currentNumber = 0.0
     }
 
-    @objc func multiplyButtonPressed() {
+    @objc private func multiplyButtonPressed() {
         executeOperation()
         currentOperation = .multiply
         textField.text = "X"
-        currentNumber = 0.0
     }
 
-    @objc func divideButtonPressed() {
+    @objc private func divideButtonPressed() {
         executeOperation()
         currentOperation = .divide
         textField.text = "/"
-        currentNumber = 0.0
     }
 
-    func executeOperation() {
+    private func executeOperation() {
         switch currentOperation {
         case .add:
             runningTotal += currentNumber
@@ -123,16 +119,16 @@ class CalculatorVC: UIViewController {
         case .equals:
             break
         }
-    }
-
-    @objc func equalButtonPressed() {
-        executeOperation()
-        currentOperation = .equals
-        textField.text = String(runningTotal)
         currentNumber = 0.0
     }
 
-    @objc func clear() {
+    @objc private func equalButtonPressed() {
+        executeOperation()
+        currentOperation = .equals
+        textField.text = String(runningTotal)
+    }
+
+    @objc private func clear() {
         currentOperation = .add
         textField.text = "0"
         runningTotal = 0
